@@ -7,4 +7,14 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
  }
 }
 
-start-process -Filepath "C:\scripts\ResetTicketingTray.bat"
+Taskkill /im SupportAssistAgent.exe /F
+
+Remove-Item -Path "HKCU:\Software\ATERA Networks" -Recurse
+Remove-Item -Force -Recurse -Path %temp%\TicketingAgentPackage
+Remove-Item -Force -Recurse -Path %temp%\TrayIconCaching
+Remove-Item -Force -Recurse "C:\Program Files\ATERA Networks\AteraAgent\Packages\AgentPackageTicketing"
+Remove-Item -Force -Recurse "C:\Program Files (x86)\ATERA Networks\AteraAgent\Packages\AgentPackageTicketing"
+
+Stop-Service AteraAgent
+Start-Service AteraAgent
+
