@@ -51,5 +51,7 @@ taskkill /f /im explorer.exe
 
 start explorer.exe
 
+start-sleep -seconds 30
+
 Remove-ItemProperty -path "HKLM:\software\policies\Microsoft\windows\explorer" -name startlayoutfile
 Remove-ItemProperty -path "HKLM:\software\policies\Microsoft\windows\explorer" -name lockedstartlayout
