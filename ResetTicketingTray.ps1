@@ -10,8 +10,8 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
 Taskkill /im SupportAssistAgent.exe /F
 
 Remove-Item -Path "HKCU:\Software\ATERA Networks" -Recurse
-Remove-Item -Force -Recurse -Path %temp%\TicketingAgentPackage
-Remove-Item -Force -Recurse -Path %temp%\TrayIconCaching
+Remove-Item -Force -Recurse -Path C:\Windows\Temp\TicketingAgentPackage
+Remove-Item -Force -Recurse -Path C:\Windows\Temp\TrayIconCaching
 Remove-Item -Force -Recurse "C:\Program Files\ATERA Networks\AteraAgent\Packages\AgentPackageTicketing"
 Remove-Item -Force -Recurse "C:\Program Files (x86)\ATERA Networks\AteraAgent\Packages\AgentPackageTicketing"
 
