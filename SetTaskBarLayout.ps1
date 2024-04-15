@@ -42,6 +42,14 @@ If(-Not(Test-Path C:\Scripts )){
 }
 Set-Content -Path "C:\Scripts\DefaultTaskbarLayout.xml" -Value $TaskbarLayout
 
+$username = $env:username
+
+Get-ChildItem -Path  C:\Users\$username\AppData\Local\Packages\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\LocalState C:\Temp -Include *.* -File -Recurse | foreach { $_.Delete()}
+
+Copy-Item -Path "C:\scripts\start.bin" -Destination "C:\users\$username\AppData\Local\Packages\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\LocalState" -Force
+
+Copy-Item -Path "C:\scripts\start2.bin" -Destination "C:\users\$username\AppData\Local\Packages\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\LocalState" -Force
+
 $RegPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer"
 if((Test-Path -LiteralPath "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer") -ne $true) {  New-Item "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -force -ea SilentlyContinue };
 New-ItemProperty -Path $RegPath -Name "StartLayoutFile" -PropertyType ExpandString -Value "C:\Scripts\DefaultTaskbarLayout.xml"
