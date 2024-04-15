@@ -33,8 +33,8 @@ If(-Not(Test-Path C:\Scripts )){
 }
 Set-Content -Path "C:\Scripts\DefaultTaskbarLayout.xml" -Value $TaskbarLayout
 
-$RegPath = "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer"
-if((Test-Path -LiteralPath "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer") -ne $true) {  New-Item "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -force -ea SilentlyContinue };
+$RegPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer"
+if((Test-Path -LiteralPath "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer") -ne $true) {  New-Item "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer" -force -ea SilentlyContinue };
 New-Item -Path $RegPath
 New-ItemProperty -Path $RegPath -Name "StartLayoutFile" -PropertyType ExpandString -Value "C:\Scripts\DefaultTaskbarLayout.xml"
 New-ItemProperty -Path $RegPath -Name "LockedStartLayout" -PropertyType DWord -Value "1"
@@ -43,5 +43,5 @@ taskkill /f /im explorer.exe
 
 start explorer.exe
 
-Remove-ItemProperty -path "HKCU:\software\policies\Microsoft\windows\explorer" -name startlayoutfile
-Remove-ItemProperty -path "HKCU:\software\policies\Microsoft\windows\explorer" -name lockedstartlayout
+Remove-ItemProperty -path "HKLM:\software\policies\Microsoft\windows\explorer" -name startlayoutfile
+Remove-ItemProperty -path "HKLM:\software\policies\Microsoft\windows\explorer" -name lockedstartlayout
